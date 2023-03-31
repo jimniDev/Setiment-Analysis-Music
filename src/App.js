@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { fireStore } from "./Firebase";
-import { InputForm } from "./inputForm";
+import { InputForm } from "./InputForm";
+import { CardSet } from "./CardSet";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
 
   return <div className="App">
     <InputForm />
+    <CardSet />
   </div>;
 }
 
