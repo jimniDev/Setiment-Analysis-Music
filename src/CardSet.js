@@ -3,17 +3,70 @@ import { Card } from './Card';
 import styles from "./CardSet.module.css";
 
 export function CardSet() {
-    const IMGS = ['./img/nongdamgom1.jpeg','./img/nongdamgom2.jpeg', './img/nongdamgom3.jpeg', './img/nongdamgom4.png','./img/nongdamgom5.jpeg']
+    const Temp = [
+        {
+            id: 1,
+            title: '밤편지',
+            artist: 'IU',
+            albumImg: './img/nongdamgom1.jpeg',
+        },
+        {
+            id: 2,
+            title: 'DNA',
+            artist: 'BTS',
+            albumImg: './img/nongdamgom2.jpeg',
+        },
+        {
+            id: 3,
+            title: '귤',
+            artist: '제주소년',
+            albumImg: './img/nongdamgom3.jpeg',
+        },
+        {
+            id: 4,
+            title: 'Post Malobne(Feat.RANI)',
+            artist: 'Sam Feldt',
+            albumImg: './img/nongdamgom4.png',
+        },
+        {
+            id: 5,
+            title: 'Green Light',
+            artist: '소녀시대',
+            albumImg: './img/nongdamgom5.jpeg',
+        }
+    ]
 
-
+    const dataId = useRef(0);
+    const [isRemoved, setIsRemoved] = useState(false);
+    const [data, setData] = useState([]);
+    
     // const frameRef = useRef();
     // let cur = frameRef.querySelector('.card:last-child') //최상단 카드
 
-    useEffect(() => {
-        // console.log(imgCount)
+    // function onCreate(title, artist, albumArt) {
+    //     const created_date = new Date().getTime();
+    //     const newItem = {
+    //         title,
+    //         artist,
+    //         albumArt,
+    //         created_date,
+    //         id: dataId.current
+    //     };
+    //     dataId.current += 1;
+    //     setData([newItem, ...data])
+    //   };
 
+    useEffect(() => {
+        setData(Temp); // 나중에 데이터 교체
+        
         // refreshCards()
-     });
+    }, []);
+
+    function handleIsRemoved() {
+        if (isRemoved) {
+            setIsRemoved(true)
+        }
+    }
 
     // function refreshCards(){
     //     var newCards= document.querySelectorAll('.card:not(.removed)')
@@ -49,16 +102,15 @@ export function CardSet() {
     //     refreshCards()
     // }
 
-
-    // function swipeCancel() {
-    //     setTransform(0, 0, 0, 100)
-    //     setTimeout(() => cur.style.transition = '', 100) // transition initialize
-    // }
     
     return (
         <div className={styles.frame}>
-            {IMGS.map((img) => (
-                <Card img={img} />
+            {data.map((data) => (
+                <Card
+                    key={data.id}
+                    data = {data}
+                    img={data.albumImg}
+                />
             ))}
         </div>
     )

@@ -1,63 +1,114 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from "./Card.module.css";
-import { motion, useMotionValue, useTransform, useAnimation } from "framer-motion";
 
-export function Card ({img}) {
-    // To move the card as the user drags the cursor
-    const motionValue = useMotionValue(0);
+export function Card ({
+    children,
+    img,
+    data
+}) {
+    const innerWidth = window.innerWidth;
+    const cardRef = useRef();
+
+    const [lastCoordinates, setLastCoordinates] = useState(null);
+    const [shape, setShape] = useState({
+        position: {
+            x: 0,
+            y: 0,
+        },
+        deg: 0,
+        duration: 0,
+    });
     
-    // To rotate the card as the card moves on drag
-    const rotateValue = useTransform(motionValue, [-200, 200], [-50, 50]);
+    function handleMove(dx, dy, dg, dt) {
+        setShape({
+            position: {
+                x: shape.position.x + dx,
+                y: shape.position.y + dy,
+            },
+            deg: shape.deg + dg,
+            durtation: shape.duration + dt,
+        });
+    }
 
-    // To decrease opacity of the card when swiped
-    // on dragging card to left(-200) or right(200)
-    // opacity gradually changes to 0
-    // and when the card is in center opacity = 1
-    const opacityValue = useTransform(
-        motionValue,
-        [-200, -150, 0, 150, 200],
-        [0, 1, 1, 1, 0]
-    );
+    function handlePointerDown(e) {
+        e.target.setPointerCapture(e.pointerId);
+        setLastCoordinates({
+          x: e.clientX,
+          y: e.clientY,
+        });
+    }
 
-    // Framer animation hook
-    const animControls = useAnimation();
+    function handlePointerMove(e) {
+        if (lastCoordinates) {
+            setLastCoordinates({
+                x: e.clientX,
+                y: e.clientY,
+        });
+        const dx = e.clientX - lastCoordinates.x;
+        const dy = e.clientY - lastCoordinates.y;
+        const dg = dx / innerWidth * 50
+        handleMove(dx, dy, dg, 0);
+        }
+    }
 
-    // const style = {
-    //     backgroundImage: `url(${img})`,
-    //     backgroundRepeat: 'no-repeat',
-    //     backgroundSize: 'contain',
-    //     backgroundColor: color,
-    //     boxShadow: '5px 10px 18px #888888',
-    //     borderRadius: 10,
-    //     height: 300
-    // };
-      
+    function handlePointerUp(e) {
+        console.log(shape.position.x, cardRef.current.clientWidth / 2)
+        if (Math.abs(shape.position.x) > cardRef.current.clientWidth / 2) {
+            swipeComplete()
+        } else { 
+            swipeCancel()
+        }
+        setLastCoordinates(null);
+    }
+
+    function swipeCancel() {
+        setShape({
+            position: {
+                x: 0,
+                y: 0,
+            },
+            deg: 0,
+            durtation: 100,
+        });
+    }
+    
+    function swipeComplete() {
+        // // Fly away 500ms
+        const moveX = shape.position.x
+        const moveY = shape.position.y;
+        const flyX = (Math.abs(moveX) / moveX) * innerWidth * 1.3;
+        const flyY = (moveY / moveX) * flyX;
+
+        setShape({
+            position: {
+                x: flyX,
+                y: flyY,
+            },
+            deg: flyX / innerWidth * 50,
+            duration: innerWidth * 1.5,
+        });
+        setTimeout(() => cardRef.current.style.transition = '', 1000) // transition initialize
+    }
 
     return (
-        // <div style={{backgroundImage: `url(${imgs[imgCount++]})`}}>
-        <motion.div
-            className={styles.card} style={{backgroundImage: `url(${img})`}}
-            // Card can be drag only on x-axis
-            drag='x'
-            x={motionValue}
-            rotate={rotateValue}
-            opacity={opacityValue}
-            dragConstraints={{ left: -1000, right: 1000 }}
-            onDragEnd={(event, info) => {
-                
-                // If the card is dragged only upto 150 on x-axis
-                // bring it back to initial position
-                if (Math.abs(info.point.x) <= 300) {
-                    animControls.start({ x: 0 });
-                } else {
-                    
-                    // If card is dragged beyond 150
-                    // make it disappear
-        
-                    // Making use of ternary operator
-                    animControls.start({ x: info.point.x < 0 ? -200 : 200 });
-                }
+        <div ref={cardRef}
+            className={styles.card}
+            style={{
+                // backgroundImage: `url(${img})`,
+                transform : `translate3d(${shape.position.x}px, ${shape.position.y}px, 0) rotate(${shape.deg}deg)`,
+                transition : `transform ${shape.duration}ms`
             }}
-        />
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
+            >
+            <img src={img}></img>
+            <h1>{data.title}</h1>
+            <h2>{data.artist}</h2>
+            
+            <h1>{shape.position.x}, {shape.position.y}</h1>
+            { lastCoordinates && <h1> /// {lastCoordinates.x}, {lastCoordinates.y}</h1>}
+        </div>
     )
 }
