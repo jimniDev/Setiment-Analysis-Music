@@ -4,7 +4,8 @@ import styles from "./Card.module.css";
 export function Card ({
     children,
     img,
-    data
+    data,
+    setData,
 }) {
     const innerWidth = window.innerWidth;
     const cardRef = useRef();
@@ -88,6 +89,8 @@ export function Card ({
             duration: innerWidth * 1.5,
         });
         setTimeout(() => cardRef.current.style.transition = '', 1000) // transition initialize
+
+        
     }
 
     return (

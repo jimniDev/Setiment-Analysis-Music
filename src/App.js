@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { fireStore } from "./Firebase";
 import { InputForm } from "./InputForm";
 import { CardSet } from "./CardSet";
+import { MusicSearch } from "./MusicSearch";
 
 function App() {
 
@@ -10,7 +11,9 @@ function App() {
   });
 
   return <div className="App">
+
     <InputForm />
+    <MusicSearch/>
     <CardSet />
   </div>;
 }

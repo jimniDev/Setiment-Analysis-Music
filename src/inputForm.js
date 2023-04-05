@@ -1,24 +1,30 @@
 import { useState } from "react";
 
 export function InputForm(props) {
-    const [value, setValue] = useState('');
+    const [analysis, setAnalysis] = useState({
+      userInput: '',
+      result: {},
+    });
     const [status, setStatus] = useState('default');
 
     function handleChange(e) {
-        setValue(e.target.value);
+        setAnalysis({
+          ...analysis,
+          userInput: e.target.value
+        });
     }
   
     function handleSubmit(e) {
-        alert('A Sentence was submitted: ' + value);
+        alert('A Sentence was submitted: ' + analysis.userInput);
         e.preventDefault();
-    
+
         fetch("/analysis", {
             method: "POST",
             headers: {
               'Content-type': 'application/json'
           },
             body: JSON.stringify({
-              text: value,
+              text: analysis.userInput,
             })
           }
           ).then(
@@ -27,7 +33,17 @@ export function InputForm(props) {
           ).then(
             data => {
               console.log(data)
-              setStatus(data.top.val)
+
+              setAnalysis({
+                ...analysis,
+                result: data // 다시 오브젝트로 변경
+              })
+              setStatus("Complete")
+              localStorage.setItem('res', JSON.stringify(analysis)) //오브젝트-> Json 으로 저장
+              const getValue = localStorage.getItem('res');
+              console.log('result~~~~', JSON.parse(getValue))
+              console.log(analysis);
+              
             }
           )
     }
@@ -37,11 +53,12 @@ export function InputForm(props) {
         <form onSubmit={handleSubmit}>
           <label>
           <h1>Today's Feeling</h1>
-          <textarea value={value} onChange={handleChange} />
+          <textarea value={analysis.userInput} onChange={handleChange} />
           </label>
           <input type="submit" value="Submit"/>
         </form>
         <h2>{status}</h2>
+        <h3>{analysis.userInput}</h3>
       </div>
     )
 }

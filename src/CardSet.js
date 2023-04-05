@@ -9,30 +9,35 @@ export function CardSet() {
             title: '밤편지',
             artist: 'IU',
             albumImg: './img/nongdamgom1.jpeg',
+            status: '',
         },
         {
             id: 2,
             title: 'DNA',
             artist: 'BTS',
             albumImg: './img/nongdamgom2.jpeg',
+            status: '',
         },
         {
             id: 3,
             title: '귤',
             artist: '제주소년',
             albumImg: './img/nongdamgom3.jpeg',
+            status: '',
         },
         {
             id: 4,
             title: 'Post Malobne(Feat.RANI)',
             artist: 'Sam Feldt',
             albumImg: './img/nongdamgom4.png',
+            status: '',
         },
         {
             id: 5,
             title: 'Green Light',
             artist: '소녀시대',
             albumImg: './img/nongdamgom5.jpeg',
+            status: '',
         }
     ]
 
@@ -107,6 +112,7 @@ export function CardSet() {
         <div className={styles.frame}>
             {data.map((data) => (
                 <Card
+                    setData={setData}
                     key={data.id}
                     data = {data}
                     img={data.albumImg}
