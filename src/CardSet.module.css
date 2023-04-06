@@ -1,5 +1,5 @@
 html, body {
-    background: linear-gradient(to right top, #D198c5FF, #E0C568FF);
+    /* background: linear-gradient(to right top, #D198c5FF, #E0C568FF); */
     display: flex;
     flex-direction: column;
     align-items: center;

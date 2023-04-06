@@ -71,7 +71,9 @@ export function MusicSearch(props) {
           </label>
           <input type="submit" value="Submit"/>
         </form>
-        <h3>{inputMusic.userInput.track}</h3>
+        <div>
+          <h3>{inputMusic.userInput.track}</h3>
+        </div>
       </div>
     )
 }

@@ -4,6 +4,7 @@ import { InputForm } from "./InputForm";
 import { CardSet } from "./CardSet";
 import { MusicSearch } from "./MusicSearch";
 
+
 function App() {
 
   useEffect(() => {
@@ -14,7 +15,6 @@ function App() {
 
     <InputForm />
     <MusicSearch/>
-    <CardSet />
   </div>;
 }
 
