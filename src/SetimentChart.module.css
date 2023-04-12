@@ -1,3 +1,8 @@
+text {
+  font-weight: 500;
+  font-size: large;
+}  
+
 rect {
     stroke: white;
 }
@@ -13,6 +18,7 @@ path {
     to {
       stroke-dashoffset: 0;
     }
-  }
-  
+}
+
+
   

@@ -40,7 +40,7 @@ export function SetimentChart(analysis) {
             isEmpty: false,
           },  
         ]}
-        className={true}
+        // className={true}
         
         interactive={true}
         // data = {[
