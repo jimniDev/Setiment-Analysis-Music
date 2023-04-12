@@ -1,0 +1,26 @@
+.frame {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item {
+    background-color: grey;
+}
+
+.item:nth-child(1) { width: 40%; }
+
+.item:nth-child(2) {
+    width: 60%;
+    display: inline;
+}
+

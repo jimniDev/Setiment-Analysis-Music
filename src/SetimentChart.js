@@ -5,8 +5,7 @@ export function SetimentChart(analysis) {
   console.log(analysis)
 
   return(
-
-    <div>
+    <div style={styles} className={styles.box}>
       <h1>{analysis.userInput}</h1>
       <DonutChart
         data={[

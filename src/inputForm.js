@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { SetimentChart } from "./SetimentChart";
+import styles from "./InputForm.module.css";
+import { CurrentDate } from "./CurrentDate";
 
 export function InputForm(props) {
     const [analysis, setAnalysis] = useState({
@@ -53,17 +55,24 @@ export function InputForm(props) {
     }
 
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-          <h1>Today's Feeling</h1>
-          <textarea value={analysis.userInput} onChange={handleChange} />
-          </label>
-          <input type="submit" value="Submit"/>
-        </form>
-        <h2>{status}</h2>
-        {analysis.result.top && <h3>{analysis.result.top.val}</h3>}
-        <SetimentChart analysis={analysis}/>
+      <div className={styles.sentimentArea}>
+        <div className={styles.sentimentAreaUp}>
+          <CurrentDate />
+          <form className={styles.wrapper} onSubmit={handleSubmit}>
+            <label className={styles.label} htmlfor="diary" >Today's Diary</label>
+            <textarea className={styles.textarea} id="diary" value={analysis.userInput} onChange={handleChange} />
+            <input className={styles.writeBtn} type="submit" value="✍"/>
+          </form>
+        </div>
+        <div className={styles.sentimentAreaDown}>
+          <div className={styles.result} status={status}>
+            <h3>{status}</h3>
+            {analysis.result.top && <h3>{analysis.result.top.val}</h3>}
+
+            <SetimentChart analysis={analysis}/>
+          </div>
+        </div>
+
       </div>
     )
 }

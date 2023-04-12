@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, React } from 'react';
+
 export function CurrentDate() {
     // const [date, setDate] = useState(0);
 
@@ -13,20 +14,22 @@ export function CurrentDate() {
     return (
         <div style={{ textAlign: `center`,
                         position:  `relative`,
-                        width: `10vh`,
+                        width: `110px`,
                         background: `#FFFFFF`,
                         opacity: `0.9`,
-                        borderRadius: `20px`,
-                        padding: `20px`,
+                        borderRadius: `30px`,
+                        padding: `30px`,
+                        display: `inline-block`,
+                        filter: `drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))`,
             }}>
-            <div class="month"
-                style={{ fontWeight: `700`, fontSize: `30px`, lineHeight: `100.6%`, textTransform: `capitalize`}}
+            <div className="month"
+                style={{ fontWeight: `800`, fontSize: `30px`, lineHeight: `100.6%`, textTransform: `capitalize`}}
                 >{monthNames[month]}</div>
-            <div class="date"
-                style={{ fontWeight: `700`, fontSize: `60px`, lineHeight: `100.6%`, textTransform: `capitalize`}}
+            <div className="date"
+                style={{ fontWeight: `700`, fontSize: `60px`, lineHeight: `90.6%`, textTransform: `capitalize`}}
                 >{date}</div>
-            <div class="year"
-                style={{ fontWeight: `700`, fontSize: `30px`, lineHeight: `100.6%`, textTransform: `capitalize`}}
+            <div className="year"
+                style={{ fontWeight: `800`, fontSize: `30px`, lineHeight: `130.6%`, textTransform: `capitalize`}}
                 >{year}</div>
         </div>
     )

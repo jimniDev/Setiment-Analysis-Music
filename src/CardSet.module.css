@@ -1,17 +1,3 @@
-html, body {
-    /* background: linear-gradient(to right top, #D198c5FF, #E0C568FF); */
-    background: #EEEEEE;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    /* font-family: 'Nunito', sans-serif; */
-    font-family: 'Noto Sans KR', sans-serif;
-      
-}
   
 .frame {
     position: relative;
