@@ -42,21 +42,24 @@ export function MusicSearch(props) {
       ).then(
         data => {
           console.log(data)
-
-          updateInputMusic(m => {
-            m.result= data // 다시 오브젝트로 변경
-          })
-          console.log(inputMusic);
-          setStatus("Complete")
-
-          localStorage.setItem('music', JSON.stringify(inputMusic)) //오브젝트-> Json 으로 저장
-          const getValue = localStorage.getItem('music');
-          console.log('result~~~~', JSON.parse(getValue))
-          console.log(inputMusic);
+          if (data.message === "SUCCESS") {
+            updateInputMusic(m => {
+              m.result= data.result // 다시 오브젝트로 변경
+            })
+            setStatus("Complete")
+          } else {
+            setStatus("Error")
+          }
+          // localStorage.setItem('music', JSON.stringify(inputMusic)) //오브젝트-> Json 으로 저장
+          // const getValue = localStorage.getItem('music');
+          // console.log('result~~~~', JSON.parse(getValue))
+          // console.log(inputMusic);
           
         }
-      )
-
+      ).catch(err => {
+        setStatus("Error")
+        alert(err);
+      });
     }
 
     return (
@@ -72,7 +75,17 @@ export function MusicSearch(props) {
           <input type="submit" value="Submit"/>
         </form>
         <div>
-          <h3>{inputMusic.userInput.track}</h3>
+          {status == "Complete" &&
+          <div>
+            <p>{inputMusic.result.album}</p>
+            <p>{inputMusic.result.artist}</p>
+            <p>{inputMusic.result.name}</p>
+            <img src={inputMusic.result.imgs[1].url}></img>
+          </div>
+          }
+          {status == "Error" &&
+            <p>스포티파이가 알아듣게 영어로 써야돼요.,,</p>
+          }
         </div>
       </div>
     )
