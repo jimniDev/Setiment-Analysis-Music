@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useImmer } from 'use-immer';
+import styles from "./MusicSearch.module.css";
+import { MusicSearchResult } from "./MusicSearchResult";
+import TextField from '@mui/material/TextField';
 
 export function MusicSearch(props) {
     const [inputMusic, updateInputMusic] = useImmer({
@@ -63,16 +66,16 @@ export function MusicSearch(props) {
     }
 
     return (
-      <div>
+      <div className={styles.musicArea}>
+        <label className={styles.musicAreaLabel}>Today's Music</label>
         <form onSubmit={handleSubmit}>
-          <label>
-          <h1>Music search</h1>
           <label>Track</label>
           <input value={inputMusic.userInput.track} onChange={handleTrackChange} />
           <label>Artist</label>
           <input value={inputMusic.userInput.artist} onChange={handleArtistChange} />
-          </label>
           <input type="submit" value="Submit"/>
+          <TextField id="standard-basic" label="Track" variant="standard" />
+          <TextField id="standard-basic" label="Artist" variant="standard" />
         </form>
         <div>
           {status == "Complete" &&
@@ -81,11 +84,13 @@ export function MusicSearch(props) {
             <p>{inputMusic.result.artist}</p>
             <p>{inputMusic.result.name}</p>
             <img src={inputMusic.result.imgs[1].url}></img>
+            <MusicSearchResult result={inputMusic.result}/>
           </div>
           }
           {status == "Error" &&
             <p>스포티파이가 알아듣게 영어로 써야돼요.,,</p>
           }
+          
         </div>
       </div>
     )
