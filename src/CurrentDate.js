@@ -13,12 +13,14 @@ export function CurrentDate() {
     
     return (
         <div style={{ textAlign: `center`,
+                        verticalAlign: `middle`,
                         position:  `relative`,
                         width: `110px`,
+                        height: `120px`,
                         background: `#FFFFFF`,
                         opacity: `0.9`,
                         borderRadius: `30px`,
-                        padding: `30px`,
+                        padding: `20px`,
                         display: `inline-block`,
                         filter: `drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))`,
             }}>
