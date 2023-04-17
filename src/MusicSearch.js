@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useImmer } from 'use-immer';
+import classNames from 'classnames/bind';
 import styles from "./MusicSearch.module.css";
 import { MusicSearchResult } from "./MusicSearchResult";
 import TextField from '@mui/material/TextField';
 
 export function MusicSearch(props) {
+    const cx = classNames.bind(styles);
     const [inputMusic, updateInputMusic] = useImmer({
       userInput: {
         track: '',
@@ -14,6 +16,9 @@ export function MusicSearch(props) {
     });
 
     const [status, setStatus] = useState('default');
+    const [isPlaying, setIsPlaying] = useState(false);
+    const PLAYBTN_IMGS = ['./img/play.png', './img/pause.png']
+    const [playValue, setPlayValue] = useState(PLAYBTN_IMGS[0])
 
     function handleTrackChange(e) {
       updateInputMusic(m => {
@@ -28,7 +33,7 @@ export function MusicSearch(props) {
     }
 
     function handleSubmit(e) {
-      alert('A music was submitted: '+ inputMusic);
+      // alert('A music was submitted: '+ inputMusic);
       e.preventDefault();
 
       const params = {
@@ -61,24 +66,50 @@ export function MusicSearch(props) {
         }
       ).catch(err => {
         setStatus("Error")
-        alert(err);
+        alert(err)
       });
+    }
+
+    function handlePlayClick(e) {
+      if (isPlaying) {
+        setIsPlaying(false)
+        setPlayValue(PLAYBTN_IMGS[0])
+      } else {
+        setIsPlaying(true)
+        setPlayValue(PLAYBTN_IMGS[1])
+      } 
+      console.log(isPlaying)
     }
 
     return (
       <div className={styles.musicArea}>
         <label className={styles.musicAreaLabel}>Today's Music</label>
-        <form onSubmit={handleSubmit}>
-          <label>Track</label>
-          <input value={inputMusic.userInput.track} onChange={handleTrackChange} />
-          <label>Artist</label>
-          <input value={inputMusic.userInput.artist} onChange={handleArtistChange} />
-          <input type="submit" value="Submit"/>
-          <TextField id="standard-basic" label="Track" variant="standard" />
-          <TextField id="standard-basic" label="Artist" variant="standard" />
-        </form>
-        <div>
+        <form className={styles.formArea} onSubmit={handleSubmit}>
+          <div className={styles.trackField}>
+            <TextField  id="standard-basic" label="Track" variant="standard" color="warning" focused 
+                        value={inputMusic.userInput.track} onChange={handleTrackChange} />
+          </div>
+          <div className={styles.artistField}>
+            <TextField  id="standard-basic" label="Artist" variant="standard" color="warning" focused
+                        value={inputMusic.userInput.artist} onChange={handleArtistChange} />
+          </div>
+
+          <input className={styles.searchBtn} type="submit" value="🎵"/>
           {status == "Complete" &&
+            <div className={styles.playerArea}>
+              <div className={cx('resultLp')}>
+                <img className={cx({play: isPlaying ? true : false})} src='./img/lp.png'/>
+                <div className={cx('resultLpImg', {play: isPlaying ? true : false})}>
+                  <img src={inputMusic.result.imgs[1].url} />
+                </div>
+                <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>
+              </div>
+            </div>
+          }
+        </form>
+
+        <div>
+          {/* {status == "Complete" &&
           <div>
             <p>{inputMusic.result.album}</p>
             <p>{inputMusic.result.artist}</p>
@@ -86,7 +117,7 @@ export function MusicSearch(props) {
             <img src={inputMusic.result.imgs[1].url}></img>
             <MusicSearchResult result={inputMusic.result}/>
           </div>
-          }
+          } */}
           {status == "Error" &&
             <p>스포티파이가 알아듣게 영어로 써야돼요.,,</p>
           }
