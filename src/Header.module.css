@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0; left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #ddd;
+}
+
+.logo {
+
+}
+
+.nav {
+    display: inline-block;
+}
+
+.userInfo {
+    float: right;
+}
