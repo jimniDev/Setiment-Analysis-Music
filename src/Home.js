@@ -10,7 +10,7 @@ export function Home() {
   return (
   <div className={styles.frame}>
     <div className={styles.container}>
-        <Logo />
+        <Logo title="TODAY"/>
 
     </div>
     <div className={styles.container}>

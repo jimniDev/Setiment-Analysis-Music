@@ -1,10 +1,14 @@
 /* @import url('https://fonts.googleapis.com/css?family=Titan+One'); */
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 
+.container {
+    width: 100%;
+    position: relative;
+}
+
 p, h2 {
     margin: 0;
 }
-
 
 .line {
     text-align: left;
@@ -13,11 +17,15 @@ p, h2 {
 }
 
 .line1{
+    /* margin-left: 15px; */
+    line-height: 30px;
     font-weight: 700;
     font-size: 60px;
 }
 
 .line2{
+    margin-left: 11px; 
+    /* line-height: 45%; */
     font-weight: 700;
     font-size: 60px;
     /* text-decoration-line: underline; */
@@ -26,23 +34,29 @@ p, h2 {
 .line3{
     font-weight: 700;
     font-size: 60px;
+    /* line-height: 220px; */
+    /* text-align: right; */
+    /* width: 100%; */
     position: absolute;
-    bottom: 190px;
-    left: 480px;
+    top: 190px;
+    left: 250px;
+    
 }
 
 
 .content {
     font-family: "Poppins", sans-serif;
-    /* position: relative;  */
+    position: relative;
+    margin-top: -60px;
 }
 
 .content > h2 {
     color: rgb(255, 255, 255);
     font-size: 8em;
     position: absolute;
-    bottom: 230px;
-    /* transform: translate(-50%, -50%); */
+    /* top: 170px; */
+    /* bottom: 292px;
+    transform: translate(-50%, -50%); */
 }
 
 .content > h2:nth-child(1) {

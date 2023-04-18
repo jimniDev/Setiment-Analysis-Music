@@ -2,11 +2,11 @@
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    margin-bottom: 20px;
+   
 }
-/* .sentimentAreaDown {
-
-} */
+.sentimentAreaDown {
+    margin-top: 20px;
+}
 
 .result{
     height: 340px;

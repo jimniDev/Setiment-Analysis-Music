@@ -1,6 +1,6 @@
 .musicArea {
     width: 100%;
-    height: 100px;
+    /* height: 100px; */
     background-color: #FFFFFF;
     opacity: 0.8;
     border-radius: 30px;
@@ -10,21 +10,23 @@
 }
 
 .musicAreaLabel {
+    float: left;
     display: block;
 	text-align: left;
     font-weight:bold;
+    margin-top: 10px;
 }
 
 .formArea{
     display: flex;
     align-items: center;
     justify-content: left;
-    margin-top: 15px;
 }
 
-/* .trackField {
-    flex-basis: 10%;
-} */
+.trackField {
+    margin-left: 20px;
+}
+
 .artistField {
     margin-left: 30px;
 }
