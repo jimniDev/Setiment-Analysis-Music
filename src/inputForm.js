@@ -67,7 +67,7 @@ export function InputForm(props) {
         </div>
         <div className={styles.sentimentAreaDown}>
           <div className={styles.result} status={status}>
-            {status === "unwrite" && <p>일기를 써보세용 ~~ </p>}
+            {status === "unwrite" && <p> Write a diary📓 to check today's mood🧘‍♂️</p>}
             {status === "Waiting" && 
               <Dna
                 visible={true}

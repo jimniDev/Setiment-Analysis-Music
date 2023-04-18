@@ -86,11 +86,11 @@ export function MusicSearch(props) {
         <label className={styles.musicAreaLabel}>Today's Music</label>
         <form className={styles.formArea} onSubmit={handleSubmit}>
           <div className={styles.trackField}>
-            <TextField  id="standard-basic" label="Track" variant="standard" color="warning" focused 
+            <TextField  id="standard-basic" label="Track" variant="standard" color="warning"  
                         value={inputMusic.userInput.track} onChange={handleTrackChange} />
           </div>
           <div className={styles.artistField}>
-            <TextField  id="standard-basic" label="Artist" variant="standard" color="warning" focused
+            <TextField  id="standard-basic" label="Artist" variant="standard" color="warning" 
                         value={inputMusic.userInput.artist} onChange={handleArtistChange} />
           </div>
 

@@ -12,13 +12,14 @@ export function CurrentDate() {
     let year = newDate.getFullYear();
     
     return (
-        <div style={{ textAlign: `center`,
+        <div style={{   
+                        textAlign: `center`,
                         verticalAlign: `middle`,
                         position:  `relative`,
                         width: `110px`,
                         height: `120px`,
                         background: `#FFFFFF`,
-                        opacity: `0.9`,
+                        opacity: `0.8`,
                         borderRadius: `30px`,
                         padding: `20px`,
                         display: `inline-block`,
