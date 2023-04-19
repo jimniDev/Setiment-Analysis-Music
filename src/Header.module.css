@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+
 .header {
-    display: flex;
+    /* display: flex; */
     text-align: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     position: fixed;
-    top: 0; left: 0;
+    top: 30px; 
     height: 50px;
-    width: 100%;
-    background-color: #ddd;
+    width: 70vw;
+    font-size: 20px;
 }
 
 .logo {
@@ -15,8 +18,42 @@
 
 .nav {
     display: inline-block;
+    font-family: "Poppins", sans-serif;
+    width: max-content;
+}
+
+.today, .archive {
+    text-decoration: none;
+    color: #2a2a2a;
+    text-decoration: none;
+    margin: 5px;
+    opacity: 0.4;
+}
+
+.active {
+    opacity: 1;
 }
 
 .userInfo {
     float: right;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    width: 8vw;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.userImg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: relative;
+}
+
+.userName{
+    display: inline;
+    margin: 0 8px;
+    font-size: 18px;
 }

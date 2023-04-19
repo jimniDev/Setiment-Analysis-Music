@@ -17,15 +17,13 @@ p, h2 {
 }
 
 .line1{
-    /* margin-left: 15px; */
-    line-height: 30px;
     font-weight: 700;
     font-size: 60px;
 }
 
 .line2{
     margin-left: 11px; 
-    /* line-height: 45%; */
+    line-height: 40px;
     font-weight: 700;
     font-size: 60px;
     /* text-decoration-line: underline; */
@@ -66,7 +64,7 @@ p, h2 {
 
 .content h2:nth-child(2) {
     color: #2a2a2a;
-    animation: animate 4s ease-in-out infinite;
+    animation: animate 3s ease-in-out infinite;
 }
 
 @keyframes animate {
