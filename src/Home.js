@@ -4,6 +4,7 @@ import { MusicSearch } from "./MusicSearch";
 import { Logo } from "./Logo";
 
 import styles from "./Home.module.css";
+import { Player } from "./Player";
 
 export function Home() {
     const [mood, setMood] = useState();
@@ -18,6 +19,7 @@ export function Home() {
     <div className={styles.frame}>
         <div className={styles.container}>
             <Logo title="TODAY"/>
+            <Player></Player>
 
         </div>
         <div className={styles.container}>
