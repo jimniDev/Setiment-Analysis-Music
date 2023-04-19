@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { useImmer } from 'use-immer';
 import classNames from 'classnames/bind';
 import styles from "./MusicSearch.module.css";
@@ -19,6 +20,10 @@ export function MusicSearch(props) {
     const [isPlaying, setIsPlaying] = useState(false);
     const PLAYBTN_IMGS = ['./img/play.png', './img/pause.png']
     const [playValue, setPlayValue] = useState(PLAYBTN_IMGS[0])
+
+    useEffect(() => {
+      props.setSeed(inputMusic.result) // result to Home Component
+    }, [inputMusic.result]);
 
     function handleTrackChange(e) {
       updateInputMusic(m => {
@@ -62,7 +67,6 @@ export function MusicSearch(props) {
           // const getValue = localStorage.getItem('music');
           // console.log('result~~~~', JSON.parse(getValue))
           // console.log(inputMusic);
-          
         }
       ).catch(err => {
         setStatus("Error")
@@ -100,7 +104,7 @@ export function MusicSearch(props) {
               <div className={cx('resultLp')}>
                 <img className={cx({play: isPlaying ? true : false})} src='./img/lp.png'/>
                 <div className={cx('resultLpImg', {play: isPlaying ? true : false})}>
-                  <img src={inputMusic.result.imgs[1].url} />
+                  <img src={inputMusic.result.album.imgs[1].url} />
                 </div>
                 <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>
               </div>
@@ -111,10 +115,10 @@ export function MusicSearch(props) {
         <div>
           {/* {status == "Complete" &&
           <div>
-            <p>{inputMusic.result.album}</p>
-            <p>{inputMusic.result.artist}</p>
+            <p>{inputMusic.result.album.name}</p>
+            <p>{inputMusic.result.artist.name}</p>
             <p>{inputMusic.result.name}</p>
-            <img src={inputMusic.result.imgs[1].url}></img>
+            <img src={inputMusic.result.album.imgs[1].url}></img>
             <MusicSearchResult result={inputMusic.result}/>
           </div>
           } */}

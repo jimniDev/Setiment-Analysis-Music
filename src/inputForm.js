@@ -12,9 +12,9 @@ export function InputForm(props) {
     });
     const [status, setStatus] = useState("unwrite");
 
-    // useEffect(() => {
-    //   setStatus()
-    // }, [])
+    useEffect(() => {
+      props.setMood(analysis) // result to Home Component
+    }, [analysis.result]);
 
     function handleChange(e) {
         setAnalysis({
@@ -24,7 +24,7 @@ export function InputForm(props) {
     }
   
     function handleSubmit(e) {
-        alert('A Sentence was submitted: ' + analysis.userInput);
+        // alert('A Sentence was submitted: ' + analysis.userInput);
         e.preventDefault();
 
         fetch("/analysis", {
@@ -50,9 +50,9 @@ export function InputForm(props) {
               // localStorage.setItem('res', JSON.stringify(analysis)) //오브젝트-> Json 으로 저장
               // const getValue = localStorage.getItem('res');
               // console.log('result~~~~', JSON.parse(getValue))
-              
             }
           )
+          props.setMood(analysis) // result to Home Component
     }
 
     return (
