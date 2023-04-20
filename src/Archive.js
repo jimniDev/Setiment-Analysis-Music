@@ -14,9 +14,9 @@ export function Archive() {
 
     </div>
     <div className={styles.container}>
-        <InputForm />
+        {/* <InputForm />
         <MusicSearch/>
-        <button className={styles.recommendBtn} type="sumbit">Get Recommendation</button>
+        <button className={styles.recommendBtn} type="sumbit">Get Recommendation</button> */}
     </div>
 
   </div>

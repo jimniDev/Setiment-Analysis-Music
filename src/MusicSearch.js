@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useImmer } from 'use-immer';
 import classNames from 'classnames/bind';
 import styles from "./MusicSearch.module.css";
-import { MusicSearchResult } from "./MusicSearchResult";
+import { Video } from "./Video";
 import TextField from '@mui/material/TextField';
 
 export function MusicSearch(props) {
@@ -74,16 +74,16 @@ export function MusicSearch(props) {
       });
     }
 
-    function handlePlayClick(e) {
-      if (isPlaying) {
-        setIsPlaying(false)
-        setPlayValue(PLAYBTN_IMGS[0])
-      } else {
-        setIsPlaying(true)
-        setPlayValue(PLAYBTN_IMGS[1])
-      } 
-      console.log(isPlaying)
-    }
+    // function handlePlayClick(e) {
+    //   if (isPlaying) {
+    //     setIsPlaying(false)
+    //     setPlayValue(PLAYBTN_IMGS[0])
+    //   } else {
+    //     setIsPlaying(true)
+    //     setPlayValue(PLAYBTN_IMGS[1])
+    //   } 
+    //   console.log(isPlaying)
+    // }
 
     return (
       <div className={styles.musicArea}>
@@ -97,31 +97,10 @@ export function MusicSearch(props) {
             <TextField  id="standard-basic" label="Artist" variant="standard" color="warning" 
                         value={inputMusic.userInput.artist} onChange={handleArtistChange} />
           </div>
-
           <input className={styles.searchBtn} type="submit" value="🎵"/>
-          {status == "Complete" &&
-            <div className={styles.playerArea}>
-              <div className={cx('resultLp')}>
-                <img className={cx({play: isPlaying ? true : false})} src='./img/lp.png'/>
-                <div className={cx('resultLpImg', {play: isPlaying ? true : false})}>
-                  <img src={inputMusic.result.album.imgs[1].url} />
-                </div>
-                <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>
-              </div>
-            </div>
-          }
         </form>
 
         <div>
-          {/* {status == "Complete" &&
-          <div>
-            <p>{inputMusic.result.album.name}</p>
-            <p>{inputMusic.result.artist.name}</p>
-            <p>{inputMusic.result.name}</p>
-            <img src={inputMusic.result.album.imgs[1].url}></img>
-            <MusicSearchResult result={inputMusic.result}/>
-          </div>
-          } */}
           {status == "Error" &&
             <p>스포티파이가 알아듣게 영어로 써야돼요.,,</p>
           }
