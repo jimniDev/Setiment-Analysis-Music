@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/archive" element={<Archive />} />
+        <Route path="/recommend" element={<CardSet />} />
       </Routes>
     </div>
   </BrowserRouter>

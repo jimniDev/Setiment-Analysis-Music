@@ -1,49 +1,18 @@
+import { useLocation } from "react-router-dom";
+import { useImmer } from 'use-immer';
 import { useState, useEffect, useRef, React } from 'react';
 import { Card } from './Card';
 import styles from "./CardSet.module.css";
+import { selectUnstyledClasses } from "@mui/base";
 
 export function CardSet() {
-    const Temp = [
-        {
-            id: 1,
-            title: '밤편지',
-            artist: 'IU',
-            albumImg: './img/nongdamgom1.jpeg',
-            status: '',
-        },
-        {
-            id: 2,
-            title: 'DNA',
-            artist: 'BTS',
-            albumImg: './img/nongdamgom2.jpeg',
-            status: '',
-        },
-        {
-            id: 3,
-            title: '귤',
-            artist: '제주소년',
-            albumImg: './img/nongdamgom3.jpeg',
-            status: '',
-        },
-        {
-            id: 4,
-            title: 'Post Malobne(Feat.RANI)',
-            artist: 'Sam Feldt',
-            albumImg: './img/nongdamgom4.png',
-            status: '',
-        },
-        {
-            id: 5,
-            title: 'Green Light',
-            artist: '소녀시대',
-            albumImg: './img/nongdamgom5.jpeg',
-            status: '',
-        }
-    ]
+    const location = useLocation();
+    const mood = location.state.mood
+    const seed = location.state.seed
 
     const dataId = useRef(0);
     const [isRemoved, setIsRemoved] = useState(false);
-    const [data, setData] = useState([]);
+    const [tracks, updateTracks] = useImmer([]);
     
     // const frameRef = useRef();
     // let cur = frameRef.querySelector('.card:last-child') //최상단 카드
@@ -62,8 +31,22 @@ export function CardSet() {
     //   };
 
     useEffect(() => {
-        setData(Temp); // 나중에 데이터 교체
-        
+        async function getRecommend() {
+            const response = await fetch('/recommend', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    seed: seed,
+                })
+            });
+            const json = await response.json();
+            console.log(json)
+            updateTracks(json['result']);
+        } 
+        getRecommend();
+        console.log(tracks)
         // refreshCards()
     }, []);
 
@@ -110,12 +93,11 @@ export function CardSet() {
     
     return (
         <div className={styles.frame}>
-            {data.map((data) => (
+            {tracks.map((track) => (
                 <Card
-                    setData={setData}
-                    key={data.id}
-                    data = {data}
-                    img={data.albumImg}
+                    updateTracks={updateTracks}
+                    key={track.id}
+                    track = {track}
                 />
             ))}
         </div>

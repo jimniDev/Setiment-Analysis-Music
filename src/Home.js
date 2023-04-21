@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { InputForm } from "./InputForm";
 import { MusicSearch } from "./MusicSearch";
@@ -8,6 +9,7 @@ import styles from "./Home.module.css";
 
 export function Home() {
     const cx = classNames.bind(styles);
+    const navigate = useNavigate();
 
     const [mood, setMood] = useState();
     const [seed, setSeed] = useState('');
@@ -26,6 +28,7 @@ export function Home() {
     function onClickRecommendBtn(){
         console.log(mood)
         console.log(seed)
+        navigate("/recommend", { state: {'mood': mood, 'seed': seed }});
     }
 
     function handlePlayClick(e) {
@@ -60,9 +63,7 @@ export function Home() {
                  </div>
                  
                 }
-            </div>
-
-            
+            </div>  
 
         </div>
         <div className={styles.container}>

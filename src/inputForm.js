@@ -31,7 +31,7 @@ export function InputForm(props) {
             method: "POST",
             headers: {
               'Content-type': 'application/json'
-          },
+          },  
             body: JSON.stringify({
               text: analysis.userInput,
             })

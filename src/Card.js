@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from "./Card.module.css";
+import classNames from 'classnames/bind';
+import { Video } from "./Video";
+
 
 export function Card ({
     children,
-    img,
-    data,
-    setData,
+    track,
+    updateTracks,
 }) {
+    const cx = classNames.bind(styles);
     const innerWidth = window.innerWidth;
     const cardRef = useRef();
 
@@ -19,8 +22,21 @@ export function Card ({
         deg: 0,
         duration: 0,
     });
+    const [removed, setRemoved] = useState(false);
+    const [moving, setMoving] = useState(false);
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    const PLAYBTN_IMGS = ['./img/play.png', './img/pause.png']
+    const [playValue, setPlayValue] = useState(PLAYBTN_IMGS[0])
+
+    useEffect(() => {
+        setIsPlaying(false)
+        setPlayValue(PLAYBTN_IMGS[0])
+    }, []);
+  
     
     function handleMove(dx, dy, dg, dt) {
+        setMoving(true)
         setShape({
             position: {
                 x: shape.position.x + dx,
@@ -32,6 +48,7 @@ export function Card ({
     }
 
     function handlePointerDown(e) {
+        setMoving(true)
         e.target.setPointerCapture(e.pointerId);
         setLastCoordinates({
           x: e.clientX,
@@ -60,6 +77,7 @@ export function Card ({
             swipeCancel()
         }
         setLastCoordinates(null);
+        setMoving(false)
     }
 
     function swipeCancel() {
@@ -89,13 +107,25 @@ export function Card ({
             duration: innerWidth * 1.5,
         });
         setTimeout(() => cardRef.current.style.transition = '', 1000) // transition initialize
+        setRemoved(true);
+        setIsPlaying(false)
+        setPlayValue(PLAYBTN_IMGS[0])
+    }
 
-        
+    function handlePlayClick(e) {
+        if (isPlaying) {
+          setIsPlaying(false)
+          setPlayValue(PLAYBTN_IMGS[0])
+        } else {
+          setIsPlaying(true)
+          setPlayValue(PLAYBTN_IMGS[1])
+        } 
+        console.log(isPlaying)
     }
 
     return (
         <div ref={cardRef}
-            className={styles.card}
+            className={cx('card', {removed: removed ? true : false}, {moving: moving ? true : false})}
             style={{
                 // backgroundImage: `url(${img})`,
                 transform : `translate3d(${shape.position.x}px, ${shape.position.y}px, 0) rotate(${shape.deg}deg)`,
@@ -106,12 +136,13 @@ export function Card ({
             onPointerUp={handlePointerUp}
             onPointerLeave={handlePointerUp}
             >
-            <img src={img}></img>
-            <h1>{data.title}</h1>
-            <h2>{data.artist}</h2>
-            
-            <h1>{shape.position.x}, {shape.position.y}</h1>
-            { lastCoordinates && <h1> /// {lastCoordinates.x}, {lastCoordinates.y}</h1>}
+            <img className={cx('albumimg')} src={track.album.images[1].url}></img>
+            <h2>{track.name}</h2>
+            <h3>{track.artists[0].name}</h3>
+            <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>
+            <Video className="today" src={track.preview_url} isPlaying={isPlaying}></Video>
+            {/* <p>{shape.position.x}, {shape.position.y}</p>
+            { lastCoordinates && <p> /// {lastCoordinates.x}, {lastCoordinates.y}</p>} */}
         </div>
     )
 }
