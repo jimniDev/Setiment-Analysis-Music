@@ -18,6 +18,7 @@ export function CardSet() {
     const [tracks, updateTracks] = useImmer([]);
     const EMOTION_IMGS = ['./img/like.png', './img/dislike.png']
     const [like, setLike] = useState('');
+    const [more, setMore] = useState(false);
     
     // const frameRef = useRef();
     // let cur = frameRef.querySelector('.card:last-child') //최상단 카드
@@ -51,14 +52,19 @@ export function CardSet() {
             updateTracks(json['result']);
         } 
         getRecommend();
+        setMore(false);
         console.log(tracks)
         // refreshCards()
-    }, []);
+    }, [more]);
 
     function handleIsRemoved() {
         if (isRemoved) {
             setIsRemoved(true)
         }
+    }
+
+    function onClickMoreBtn(){
+        setMore(true);
     }
 
     // function refreshCards(){
@@ -98,8 +104,8 @@ export function CardSet() {
     
     return (
         <div className={styles.frame}>
-            {like == 'like' && <Popup src={EMOTION_IMGS[0]} onClose={() => setLike('')} />}
-            {like == 'dislike' && <Popup src={EMOTION_IMGS[1]} onClose={() => setLike('')} />}
+            {like == 'like' && <Popup className={like} src={EMOTION_IMGS[0]} onClose={() => setLike('')} />}
+            {like == 'dislike' && <Popup className={like} src={EMOTION_IMGS[1]} onClose={() => setLike('')} />}
             {tracks.map((track) => (
                 <Card
                     updateTracks={updateTracks}
@@ -109,6 +115,7 @@ export function CardSet() {
                     like = {like}
                 />
             ))}
+            {/* <button className={styles.moreBtn} onClick={onClickMoreBtn}>Get More Recommendation!</button> */}
         </div>
     )
 }

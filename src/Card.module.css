@@ -34,6 +34,7 @@
 .lpImg {
     width: 500px;
     height: 500px;
+    pointer-events: none;
 }
 
 
@@ -72,6 +73,7 @@
     width: 260px;
     height: 260px;
     border-radius: 100%;
+    pointer-events: none;
 }
 
 /*  */

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export function Popup({ onClose, src }) {
+export function Popup({ className, onClose, src }) {
   return (
     <Wrap onAnimationEnd={onClose}>
-        <div className={'emotion'}>
+        <div className={className}>
             <img src={src}/>
         </div>
     </Wrap>
@@ -11,16 +11,30 @@ export function Popup({ onClose, src }) {
 }
 
 const Wrap = styled.div`
-    .emotion {
+    .like {
         z-index: 30;
         position: absolute;
         top: 150px;
-        left: 120px;
+        left: 520px;
         animation: heart 1.5s;
         opacity: 0;
     }
 
-    .emotion > img {
+    .dislike {
+        z-index: 30;
+        position: absolute;
+        top: 150px;
+        right: 550px;
+        animation: heart 1.5s;
+        opacity: 0;
+    }
+
+    .like > img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .dislike > img {
         width: 150px;
         height: 150px;
     }
