@@ -7,12 +7,14 @@ import { Logo } from "./Logo";
 import classNames from 'classnames/bind';
 import styles from "./Home.module.css";
 
+
 export function Home() {
     const cx = classNames.bind(styles);
     const navigate = useNavigate();
 
     const [mood, setMood] = useState();
     const [seed, setSeed] = useState('');
+    const [color, setColor] = useState('#2a2a2a');
 
     const [isPlaying, setIsPlaying] = useState(false);
     const PLAYBTN_IMGS = ['./img/play.png', './img/pause.png']
@@ -41,11 +43,10 @@ export function Home() {
         } 
     }
 
-
     return (
     <div className={styles.frame}>
         <div className={styles.container}>
-            <Logo className={styles.logo} title="TODAY"/>
+            <Logo className={styles.logo} color={color} title="TODAY"/>
     
             <div className={styles.turntable}>
                 <img src='./img/turntable.png'/>
@@ -67,7 +68,7 @@ export function Home() {
 
         <div className={styles.container}>
             <InputForm setMood={setMood}/>
-            <MusicSearch setSeed={setSeed}/>
+            <MusicSearch setSeed={setSeed} setColor={setColor}/>
             <button className={styles.recommendBtn} type="sumbit" onClick={onClickRecommendBtn}>Get Recommendation</button>
         </div>
 

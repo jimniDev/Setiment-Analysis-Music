@@ -10,9 +10,9 @@ export function Logo(props) {
             <div className={cx('line1', {line: true})}><p>Playing</p></div>
             <div className={cx('line2', {line: true})}><p>YOUR</p></div>
         
-            <div className={cx('content')}>
-                <h2>{props.title}</h2>
-                <h2>{props.title}</h2>
+            <div className={cx('content')} style={{color: `${props.color}`}}>
+                <h2 >{props.title}</h2>
+                <h2 style={{color: `${props.color}`, WebkitTextStroke: `2px black`}} >{props.title}</h2>
             </div>
 
             <div className={cx('line3', {line: true})}><p>MOOD</p></div>

@@ -20,7 +20,19 @@
 .turntable {
     position: relative;
     margin-top: 30px;
+    animation: slide-left ease 1s ;
 }
+
+@keyframes slide-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+  }
 
 .turntable > img {
     /* width: 50vh; */
@@ -134,5 +146,17 @@
     font-size: 15px;
     font-weight: 700;
     color: #FFFFFF;
+    animation: slide-right ease 1s;
 }
+
+@keyframes slide-right {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+  }
 

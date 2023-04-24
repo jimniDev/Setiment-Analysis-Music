@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { useImmer } from 'use-immer';
 import classNames from 'classnames/bind';
 import styles from "./MusicSearch.module.css";
-import { Video } from "./Video";
 import TextField from '@mui/material/TextField';
 
 export function MusicSearch(props) {
@@ -20,8 +19,10 @@ export function MusicSearch(props) {
     const [isPlaying, setIsPlaying] = useState(false);
     const PLAYBTN_IMGS = ['./img/play.png', './img/pause.png']
     const [playValue, setPlayValue] = useState(PLAYBTN_IMGS[0])
+    const canvasRef = useRef();
 
     useEffect(() => {
+      canvasRef.current.style.display='none'
       props.setSeed(inputMusic.result) // result to Home Component
     }, [inputMusic.result]);
 
@@ -58,8 +59,11 @@ export function MusicSearch(props) {
           if (data.message === "SUCCESS") {
             updateInputMusic(m => {
               m.result= data.result // 다시 오브젝트로 변경
+              m.userInput.track = data.result.name
+              m.userInput.artist = data.result.artist.name
             })
             setStatus("Complete")
+            getColorFromImg(data.result.album.imgs[1].url)
           } else {
             setStatus("Error")
           }
@@ -74,39 +78,48 @@ export function MusicSearch(props) {
       });
     }
 
-    // function handlePlayClick(e) {
-    //   if (isPlaying) {
-    //     setIsPlaying(false)
-    //     setPlayValue(PLAYBTN_IMGS[0])
-    //   } else {
-    //     setIsPlaying(true)
-    //     setPlayValue(PLAYBTN_IMGS[1])
-    //   } 
-    //   console.log(isPlaying)
-    // }
+    function getColorFromImg(img){
+      if (!canvasRef) return;
+      var canvas = canvasRef
+      var ctx = canvas.current.getContext("2d")
+      canvas.current.style.display='none'
+      
+      const IMG = new Image();
+      IMG.src = img;
+      IMG.crossOrigin="Anonymous"
+      
+      IMG.onload = function() {
+          console.log('img!', IMG.height)
+          canvas.height = IMG.height
+          canvas.width = IMG.width
+          ctx.drawImage(IMG, 0, 0);
+          var id = ctx.getImageData(0, 0, canvas.width, canvas.height)
+          var i = 4;
+          props.setColor(`rgba(${id.data[i]}, ${id.data[i+1]}, ${id.data[i+2]}, ${id.data[i+3]})`);
+          }
+    }
 
     return (
       <div className={styles.musicArea}>
         <label className={styles.musicAreaLabel}>Today's Music</label>
         <form className={styles.formArea} onSubmit={handleSubmit}>
           <div className={styles.trackField}>
-            <TextField  id="standard-basic" label="Track" variant="standard" color="warning" focused 
+            <TextField  id="outlined-basic" label="Track" variant="standard" color="warning" size="small"
                         value={inputMusic.userInput.track} onChange={handleTrackChange} />
           </div>
           <div className={styles.artistField}>
-            <TextField  id="standard-basic" label="Artist" variant="standard" color="warning" 
+            <TextField  id="outlined-basic" label="Artist" variant="standard" color="warning" size="small"
                         value={inputMusic.userInput.artist} onChange={handleArtistChange} />
           </div>
           <input className={styles.searchBtn} type="submit" value="🎵"/>
         </form>
 
-        <div>
+        <div className={styles.errorField}>
           {status == "Error" &&
-            <p>스포티파이가 알아듣게 영어로 써야돼요.,,</p>
+            <p>No Result on Spotify</p>
           }
-          
         </div>
+        <canvas ref={canvasRef}></canvas>
       </div>
     )
 }
-

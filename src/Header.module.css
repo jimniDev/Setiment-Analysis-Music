@@ -13,13 +13,14 @@
 }
 
 .logo {
-
+    width: max-content;
 }
 
 .nav {
     display: inline-block;
     font-family: "Poppins", sans-serif;
     width: max-content;
+    margin-left: 70px;
 }
 
 .today, .archive {
@@ -28,6 +29,7 @@
     text-decoration: none;
     margin: 5px;
     opacity: 0.4;
+    font-weight: 600;
 }
 
 .active {

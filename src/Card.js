@@ -64,7 +64,6 @@ export function Card ({
                 setTextColor('white')
             }
         }
-   
     }
 
     function handleMove(dx, dy, dg, dt) {
