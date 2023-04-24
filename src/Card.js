@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import styles from "./Card.module.css";
 import classNames from 'classnames/bind';
 import { Video } from "./Video";
+import { formControlClasses } from '@mui/material';
 
 
 export function Card ({
@@ -12,6 +13,8 @@ export function Card ({
     const cx = classNames.bind(styles);
     const innerWidth = window.innerWidth;
     const cardRef = useRef();
+    const canvasRef = useRef();
+    const imgRef = useRef();
 
     const [lastCoordinates, setLastCoordinates] = useState(null);
     const [shape, setShape] = useState({
@@ -28,13 +31,42 @@ export function Card ({
     const [isPlaying, setIsPlaying] = useState(false);
     const PLAYBTN_IMGS = ['./img/play.png', './img/pause.png']
     const [playValue, setPlayValue] = useState(PLAYBTN_IMGS[0])
+    const [color, setcolor] = useState('white');
+    const [textColor, setTextColor] = useState('#2a2a2a');
 
     useEffect(() => {
         setIsPlaying(false)
         setPlayValue(PLAYBTN_IMGS[0])
-    }, []);
+        getColorFromImg()
+        // setTimeout(()=>{ getColorFromImg() }, 100);
+    }, [color]);
   
-    
+    function getColorFromImg(){
+        if (!canvasRef) return;
+        var canvas = canvasRef
+        var ctx = canvas.current.getContext("2d")
+        canvas.current.style.display='none'
+        
+        const IMG = new Image();
+        IMG.src = track.album.images[1].url;
+        IMG.crossOrigin="Anonymous"
+        
+        IMG.onload = function() {
+            console.log('img!', IMG.height)
+            canvas.height = IMG.height
+            canvas.width = IMG.width
+            ctx.drawImage(IMG, 0, 0);
+            var id = ctx.getImageData(0, 0, canvas.width, canvas.height)
+            var i = 4;
+            console.log(id.data[i],id.data[i+1],id.data[i+2],id.data[i+3])
+            setcolor(`rgba(${id.data[i]}, ${id.data[i+1]}, ${id.data[i+2]}, ${id.data[i+3]})`);
+            if ((id.data[i]<=128) || (id.data[i]<=128) || (id.data[i]<=128)) {
+                setTextColor('white')
+            }
+        }
+   
+    }
+
     function handleMove(dx, dy, dg, dt) {
         setMoving(true)
         setShape({
@@ -127,18 +159,34 @@ export function Card ({
         <div ref={cardRef}
             className={cx('card', {removed: removed ? true : false}, {moving: moving ? true : false})}
             style={{
-                // backgroundImage: `url(${img})`,
+                backgroundColor: `${color}`,
                 transform : `translate3d(${shape.position.x}px, ${shape.position.y}px, 0) rotate(${shape.deg}deg)`,
-                transition : `transform ${shape.duration}ms`
+                transition : `transform ${shape.duration}ms`,
+                color: `${textColor}`
             }}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerLeave={handlePointerUp}
             >
-            <img className={cx('albumimg')} src={track.album.images[1].url}></img>
-            <h2>{track.name}</h2>
-            <h3>{track.artists[0].name}</h3>
+            <div className={cx('playerArea')}>
+                <img className={cx('lpImg', {play: isPlaying ? true : false})} src='./img/lp.png'/>
+                <div className={cx('resultLpImg', {play: isPlaying ? true : false})}>
+                    <img ref={imgRef} className={cx('albumimg')} src={track.album.images[1].url}></img>
+                </div>
+                <canvas ref={canvasRef}></canvas>
+            </div>
+            
+            <div className={cx('title')}> 
+                <div className={cx('forblurLeft')}  style={{backgroundColor: `${color}`}}></div>
+                <div className={cx('forblurRight')} style={{backgroundColor: `${color}`}}></div>
+                <div className={cx('track')}>
+                    <div className={cx('content')}>{track.name}</div>
+                </div>
+            </div>
+            <div className={cx('artist')}>
+                <div className={cx('content')}>{track.artists[0].name}</div>
+            </div>
             <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>
             <Video className="today" src={track.preview_url} isPlaying={isPlaying}></Video>
             {/* <p>{shape.position.x}, {shape.position.y}</p>

@@ -39,15 +39,14 @@ export function Home() {
           setIsPlaying(true)
           setPlayValue(PLAYBTN_IMGS[1])
         } 
-        console.log(isPlaying)
     }
+
 
     return (
     <div className={styles.frame}>
         <div className={styles.container}>
             <Logo className={styles.logo} title="TODAY"/>
-            {/* <Player track={seed}></Player> */}
-
+    
             <div className={styles.turntable}>
                 <img src='./img/turntable.png'/>
                 { Object.keys(seed).length !== 0 && 
@@ -64,8 +63,8 @@ export function Home() {
                  
                 }
             </div>  
-
         </div>
+
         <div className={styles.container}>
             <InputForm setMood={setMood}/>
             <MusicSearch setSeed={setSeed}/>

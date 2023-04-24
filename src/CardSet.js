@@ -11,6 +11,7 @@ export function CardSet() {
     const seed = location.state.seed
 
     const dataId = useRef(0);
+
     const [isRemoved, setIsRemoved] = useState(false);
     const [tracks, updateTracks] = useImmer([]);
     
