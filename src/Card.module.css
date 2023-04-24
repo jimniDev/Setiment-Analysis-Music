@@ -62,9 +62,9 @@
 
 .resultLpImg {
     position: absolute;
-    top: 65px;
+    top: 55px;
     left: 140px;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 
@@ -147,12 +147,33 @@
 
 .artist {
     padding-left: 12px;
-    margin-top: -25px;
+    margin-top: -3px;
     font-size: 30px;
     font-weight: 500;
     font-family: Poppins;
-    /* color: #2a2a2a; */
     text-align: left;
+    text-overflow : ellipsis ;
+}
+
+.artist > .content {
+    text-overflow : ellipsis ;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.album {
+    padding-left: 12px;
+    margin-top: -20px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Poppins;
+    text-align: left;
+}
+
+.album > .content {
+    text-overflow : ellipsis ;
+    overflow:hidden;
+    white-space:nowrap;
 }
 
 

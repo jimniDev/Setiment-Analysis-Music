@@ -2,13 +2,14 @@ import { useState, useRef, useEffect } from 'react';
 import styles from "./Card.module.css";
 import classNames from 'classnames/bind';
 import { Video } from "./Video";
-import { formControlClasses } from '@mui/material';
 
 
 export function Card ({
     children,
     track,
     updateTracks,
+    setLike,
+    like,
 }) {
     const cx = classNames.bind(styles);
     const innerWidth = window.innerWidth;
@@ -33,6 +34,8 @@ export function Card ({
     const [playValue, setPlayValue] = useState(PLAYBTN_IMGS[0])
     const [color, setcolor] = useState('white');
     const [textColor, setTextColor] = useState('#2a2a2a');
+    
+    
 
     useEffect(() => {
         setIsPlaying(false)
@@ -101,9 +104,15 @@ export function Card ({
     }
 
     function handlePointerUp(e) {
-        console.log(shape.position.x, cardRef.current.clientWidth / 2)
-        if (Math.abs(shape.position.x) > cardRef.current.clientWidth / 2) {
+        // console.log(shape.position.x, cardRef.current.clientWidth / 2)
+        if (shape.position.x > cardRef.current.clientWidth / 2) {
+            setLike('like')
             swipeComplete()
+            console.log('like')
+        } else if ((shape.position.x) < cardRef.current.clientWidth / -2) {
+            setLike('dislike')
+            swipeComplete()
+            console.log('dislike')
         } else { 
             swipeCancel()
         }
@@ -175,7 +184,6 @@ export function Card ({
                 </div>
                 <canvas ref={canvasRef}></canvas>
             </div>
-            
             <div className={cx('title')}> 
                 <div className={cx('forblurLeft')}  style={{backgroundColor: `${color}`}}></div>
                 <div className={cx('forblurRight')} style={{backgroundColor: `${color}`}}></div>
@@ -183,13 +191,14 @@ export function Card ({
                     <div className={cx('content')}>{track.name}</div>
                 </div>
             </div>
+            <div className={cx('album')}>
+                <div className={cx('content')}>{track.album.name}</div>
+            </div>
             <div className={cx('artist')}>
                 <div className={cx('content')}>{track.artists[0].name}</div>
             </div>
-            <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>
+            {track.preview_url && <img className={styles.playBtn} src={playValue} onClick={handlePlayClick}/>}
             <Video className="today" src={track.preview_url} isPlaying={isPlaying}></Video>
-            {/* <p>{shape.position.x}, {shape.position.y}</p>
-            { lastCoordinates && <p> /// {lastCoordinates.x}, {lastCoordinates.y}</p>} */}
         </div>
     )
 }
