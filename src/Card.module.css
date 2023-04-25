@@ -179,24 +179,6 @@
 }
 
 
-/* .card:not(.removed):not(.moving):nth-last-child(1) {
-    transform: scale(1) translateY(0px) !important;
-    opacity: 1;
-    transition: transform 100ms !important;
-}
-.card:not(.removed):not(.moving):nth-last-child(2) {
-    transform: scale(0.95) translateY(-30px) !important;
-    opacity: 0.9;
-    transition: transform 100ms !important;
-}
-.card:not(.removed):not(.moving):nth-last-child(3) {
-    transform: scale(0.9) translateY(-60px) !important;
-    opacity: 0.8;
-    transition: transform 100ms !important;
-} */
-
-
-
  .playBtn {
     position: absolute;
     bottom: 5%;

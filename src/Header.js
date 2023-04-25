@@ -18,7 +18,7 @@ export function Header() {
                 <Link to={'/archive'} className={cx('archive', {active : archiveMatched ? true : false})}>Archive</Link>
             </div>
             <div className={styles.userInfo}>
-                <img className={styles.userImg} src='./img/Spotify_Logo_CMYK_Black.png'></img>
+                <img className={styles.userImg} src='./img/Spotify_Logo_CMYK_Green.png'></img>
                 <p className={styles.userName}>Jimin Kim</p>
             </div>
         </div>

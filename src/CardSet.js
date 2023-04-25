@@ -18,23 +18,6 @@ export function CardSet() {
     const [tracks, updateTracks] = useImmer([]);
     const EMOTION_IMGS = ['./img/like.png', './img/dislike.png']
     const [like, setLike] = useState('');
-    const [more, setMore] = useState(false);
-    
-    // const frameRef = useRef();
-    // let cur = frameRef.querySelector('.card:last-child') //최상단 카드
-
-    // function onCreate(title, artist, albumArt) {
-    //     const created_date = new Date().getTime();
-    //     const newItem = {
-    //         title,
-    //         artist,
-    //         albumArt,
-    //         created_date,
-    //         id: dataId.current
-    //     };
-    //     dataId.current += 1;
-    //     setData([newItem, ...data])
-    //   };
 
     useEffect(() => {
         async function getRecommend() {
@@ -44,6 +27,7 @@ export function CardSet() {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
+                    mood: mood,
                     seed: seed,
                 })
             });
@@ -52,10 +36,9 @@ export function CardSet() {
             updateTracks(json['result']);
         } 
         getRecommend();
-        setMore(false);
         console.log(tracks)
         // refreshCards()
-    }, [more]);
+    }, []);
 
     function handleIsRemoved() {
         if (isRemoved) {
@@ -64,46 +47,12 @@ export function CardSet() {
     }
 
     function onClickMoreBtn(){
-        setMore(true);
+        window.location.replace("/recommend")
     }
-
-    // function refreshCards(){
-    //     var newCards= document.querySelectorAll('.card:not(.removed)')
-    
-    //     if (newCards) {
-    //         const topCard = frame.children[newCards.length-1]
-            
-    //         for (let i = 0; i < imgs.length; i++){
-    //             // newCards[imgs.length -1 - i].style.transform = ''
-    //             newCards[imgs.length -1 - i].style.transform = 'scale(' + (20 - i)/20 + ') translateY(-' + i * 20 + 'px)'
-    //             newCards[imgs.length -1 - i].style.opacitiy = (10-i) / 10
-    //             newCards[imgs.length -1 - i].style.transition = `transform 100ms`
-    //         }
-    //     }
-    // }
-
-    // function swipeComplete() {
-    //     // // Fly away 500ms
-    //     const flyX = (Math.abs(moveX) / moveX) * innerWidth * 1.3
-    //     const flyY = (moveY / moveX) * flyX
-    //     setTransform(flyX, flyY, flyX / innerWidth * 50, innerWidth)
-    
-    //     // // Replace Top Card 
-    //     const prev = cur
-    //     const next = cur.previousElementSibling
-    //     cur = next
-    //     addEventListener(next)
-    //     prev.classList.add('removed')
-    //     appendCard()
-    //     setTimeout(() => frame.removeChild(prev), innerWidth)
-        
-    //     // replace 하면서 위치 바꿔치기?
-    //     refreshCards()
-    // }
-
     
     return (
         <div className={styles.frame}>
+            <button className={styles.moreBtn} onClick={onClickMoreBtn}>Get More Recommendation!</button>
             {like == 'like' && <Popup className={like} src={EMOTION_IMGS[0]} onClose={() => setLike('')} />}
             {like == 'dislike' && <Popup className={like} src={EMOTION_IMGS[1]} onClose={() => setLike('')} />}
             {tracks.map((track) => (
@@ -115,7 +64,7 @@ export function CardSet() {
                     like = {like}
                 />
             ))}
-            {/* <button className={styles.moreBtn} onClick={onClickMoreBtn}>Get More Recommendation!</button> */}
+            
         </div>
     )
 }

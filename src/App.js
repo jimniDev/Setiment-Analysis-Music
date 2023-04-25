@@ -6,6 +6,7 @@ import { Home } from "./Home";
 import { Archive } from "./Archive";
 import { Header } from "./Header";
 import './App.css';
+import { Footer } from './Footer';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/archive" element={<Archive />} />
         <Route path="/recommend" element={<CardSet />} />
       </Routes>
+      <Footer />
     </div>
   </BrowserRouter>
 

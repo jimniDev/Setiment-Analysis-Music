@@ -32,23 +32,6 @@ export function SetimentChart(analysis) {
     return b.value - a.value
   });
   console.log(chartData)
-//   {
-//     "analysis": {
-//         "userInput": "우리의 밤은 셀 수 없는 별들과 모래알 그사이",
-//         "result": {
-//             "anger": 4.474,
-//             "anxiety": 3.889,
-//             "embarrassment": 2.429,
-//             "hurt": 4.111,
-//             "joy": 30.648,
-//             "sadness": 54.449,
-//             "top": {
-//                 "num": 3,
-//                 "val": "슬픔"
-//             }
-//         }
-//     }
-// }
 
   return(
     <div style={styles} className={styles.box}>
