@@ -9,7 +9,9 @@ export function Header() {
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo}></div>
+            <div className={styles.logo}>
+                <img className={styles.logoImg} src='./img/Music.png'></img>
+            </div>
             <div className={styles.nav}>
                 <Link to={'/'} className={cx('today', {active : todayMatched ? true : false})}>Today</Link>
                 <label> | </label>

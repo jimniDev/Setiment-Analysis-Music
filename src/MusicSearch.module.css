@@ -33,7 +33,7 @@
 .formArea{
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
 }
 
 .trackField {
