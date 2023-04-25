@@ -54,6 +54,7 @@
 
 .active {
     opacity: 1;
+    color: #1AB26B;
 }
 
 .userInfo {
