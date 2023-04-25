@@ -119,6 +119,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 50px;
 }
 
 .item {
@@ -135,7 +136,7 @@
 
 .recommendBtn {
     width: 40%;
-    height: 6%;
+    height: 50px;
     background: #000000;
     opacity: 0.8;
     box-shadow: 2px 4px 7px 2px rgba(0, 0, 0, 0.15);
@@ -144,7 +145,7 @@
     margin-top: 20px;
     cursor: pointer;
     font-family: Poppins;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     color: #FFFFFF;
     animation: slide-right ease 1s;
