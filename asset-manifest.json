@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Setiment-Analysis-Music/static/css/main.9e449f88.css",
+    "main.js": "/Setiment-Analysis-Music/static/js/main.ba9a4e1f.js",
+    "static/js/787.a7c4a3ea.chunk.js": "/Setiment-Analysis-Music/static/js/787.a7c4a3ea.chunk.js",
+    "index.html": "/Setiment-Analysis-Music/index.html",
+    "main.9e449f88.css.map": "/Setiment-Analysis-Music/static/css/main.9e449f88.css.map",
+    "main.ba9a4e1f.js.map": "/Setiment-Analysis-Music/static/js/main.ba9a4e1f.js.map",
+    "787.a7c4a3ea.chunk.js.map": "/Setiment-Analysis-Music/static/js/787.a7c4a3ea.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9e449f88.css",
+    "static/js/main.ba9a4e1f.js"
+  ]
+}
