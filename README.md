@@ -1,9 +1,10 @@
 # Sentiment-Analysis-Music-Recommendation-Frontend
-![image](https://github.com/user-attachments/assets/2f38754c-ac94-47be-be0e-fa80873b5a08)
 
 ## Overview
 
 This repository contains the **frontend** implementation of the **Sentiment Analysis Music Recommendation Service**, a web application built with **React**. It allows users to submit diary entries in Korean, view visualizations of their emotional analysis, and explore music recommendations tailored to their mood.
+
+![image](https://github.com/user-attachments/assets/2f38754c-ac94-47be-be0e-fa80873b5a08)
 
 The backend for this project, which processes emotion analysis and retrieves Spotify music recommendations, is hosted in a separate repository: [Sentiment-Analysis-Flask](https://github.com/jimniDev/Setiment-Analysis-Flask).
 
