@@ -40,7 +40,7 @@ The backend for this project, which processes emotion analysis and retrieves Spo
 
 ## Development Process
 
-![image](https://github.com/user-attachments/assets/c1e4a837-a443-45e4-8888-1fc560b55505)
+
 
 ### User Flow
 1. **Write Diary**:
@@ -49,6 +49,7 @@ The backend for this project, which processes emotion analysis and retrieves Spo
    - The backend processes the diary and returns emotional probabilities.
 3. **Visualization**:
    - Interactive charts display the emotional breakdown of the diary entry.
+   - ![image](https://github.com/user-attachments/assets/c1e4a837-a443-45e4-8888-1fc560b55505)
 4. **Music Recommendations**:
    - Spotify API generates music recommendations based on the detected emotions.
    - Users can play, like/dislike, or swipe through recommendations.
