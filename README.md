@@ -1,70 +1,171 @@
-# Getting Started with Create React App
+# Sentiment-Analysis-Music-Recommendation-Frontend
+![image](https://github.com/user-attachments/assets/2f38754c-ac94-47be-be0e-fa80873b5a08)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This repository contains the **frontend** implementation of the **Sentiment Analysis Music Recommendation Service**, a web application built with **React**. It allows users to submit diary entries in Korean, view visualizations of their emotional analysis, and explore music recommendations tailored to their mood.
 
-In the project directory, you can run:
+The backend for this project, which processes emotion analysis and retrieves Spotify music recommendations, is hosted in a separate repository: [Sentiment-Analysis-Flask](https://github.com/jimniDev/Setiment-Analysis-Flask).
 
-### `npm start`
+![image](https://github.com/user-attachments/assets/8d71a3c3-8d66-4baf-a6a0-3f2578715800)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+### 1. Emotional Analysis Visualization
+- Displays emotion analysis results (Joy, Calm, Surprise, Sadness, Anger, and Hurt) using interactive charts.
+- Provides a clear understanding of the user's emotional state through intuitive visualizations.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Music Recommendations
+- Integrates Spotify API to recommend songs based on emotion analysis results.
+- Features include:
+  - Song playback using embedded Spotify links.
+  - Like/dislike functionality for music recommendations.
+  - Ability to request additional recommendations.
 
-### `npm run build`
+### 3. Dynamic UI Features
+- Extract dominant colors from album artwork to enhance UI aesthetics.
+- Simulate LP record rotation animations using CSS.
+- Swipeable music recommendation cards using React and JavaScript.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Folder Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+Setiment-Analysis-Music/
+├── public/
+│   ├── index.html            # Root HTML file
+│   ├── favicon.ico           # Application favicon
+│   └── manifest.json         # Web app manifest
+├── src/
+│   ├── api/
+│   │   ├── analysisApi.js    # Handles API calls for emotion analysis
+│   │   ├── recommendationApi.js # Handles API calls for music recommendations
+│   ├── components/
+│   │   ├── Chart.js          # Visualizes emotion analysis results
+│   │   ├── MusicCard.js      # Displays recommended music tracks
+│   │   ├── DiaryForm.js      # Input form for diary submission
+│   │   ├── Navbar.js         # Navigation bar component
+│   │   ├── AlbumArtExtractor.js # Extract colors from album images
+│   │   ├── LPAnimation.js    # CSS-based rotating LP record component
+│   │   ├── SwipeableCards.js # Swipe functionality for recommendation cards
+│   ├── pages/
+│   │   ├── Home.js           # Home page with diary submission form
+│   │   ├── Results.js        # Page displaying emotion analysis and recommendations
+│   │   ├── Archive.js        # Page for viewing past diary submissions and results
+│   ├── styles/               # Application-wide CSS styles
+│   ├── App.js                # Main application component
+│   ├── index.js              # Application entry point
+├── .env.example              # Environment variables template
+├── package.json              # Project dependencies and scripts
+├── README.md                 # Project documentation
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Development Process
+![image](https://github.com/user-attachments/assets/46f2e3b7-c503-428a-880b-5668c3e5cc64)
+![image](https://github.com/user-attachments/assets/c1e4a837-a443-45e4-8888-1fc560b55505)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### User Flow
+1. **Write Diary**:
+   - Users submit a diary entry in Korean through an intuitive input form.
+2. **Emotion Analysis**:
+   - The backend processes the diary and returns emotional probabilities.
+3. **Visualization**:
+   - Interactive charts display the emotional breakdown of the diary entry.
+4. **Music Recommendations**:
+   - Spotify API generates music recommendations based on the detected emotions.
+   - Users can play, like/dislike, or swipe through recommendations.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Key Frontend Features
+1. **Album Art Color Extraction**:
+   - Extract dominant colors from album art using the HTML Canvas API.
+   - Apply extracted colors dynamically to titles and music cards.
+   - ![image](https://github.com/user-attachments/assets/00617c1c-b170-4d3b-b225-269e223641ef)
+   - ![image](https://github.com/user-attachments/assets/ff2b7357-55ed-4163-802b-a8e2a27ada06)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+2. **LP Record Animation**:
+   - CSS animations simulate an LP record rotation effect.
+   - Rotation continues during music playback.
+   - ![image](https://github.com/user-attachments/assets/7187b685-4095-4c1e-b0d6-cd099f220284)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Swipeable Recommendation Cards**:
+   - JavaScript and React handle card swipe events.
+   - Animations and mouse event listeners ensure smooth user interactions.
+   - ![image](https://github.com/user-attachments/assets/3fee8a8f-9c46-42c2-8fc0-62f4ce01c4c7)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Frontend
+- **React**: Component-based framework for building the user interface.
+- **Chart.js**: For interactive data visualizations of emotional analysis results.
+- **CSS Animations**: To create dynamic visual effects such as LP rotation.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Prerequisites
 
-### Advanced Configuration
+### Backend Setup
+Ensure the backend service is running locally or hosted. Refer to the backend repository: [Sentiment-Analysis-Flask](https://github.com/jimniDev/Setiment-Analysis-Flask).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Setup Instructions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/jimniDev/Setiment-Analysis-Music.git
+   cd Setiment-Analysis-Music
+   ```
 
-### `npm run build` fails to minify
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. Set up environment variables:
+   Create a `.env` file in the root directory and include:
+   ```
+   REACT_APP_API_BASE_URL=http://localhost:5000
+   ```
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+5. Open the application in your browser:
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## Results
+- **Award Recognition**:
+  - This project won the *People’s Choice Award* in the SW-Reskilling @LG Electronics program.
+
+---
+
+## Future Enhancements
+1. Enhance swipeable card UI for mobile responsiveness.
+2. Expand dynamic UI features with animated feedback for likes/dislikes.
+3. Add multilingual diary support and user preferences for improved recommendations.
+
+---
+
+## Contributing
+Contributions are welcome! Please create a pull request or open an issue to discuss changes or enhancements.
+
+---
+
+## License
+This project is licensed under the [MIT License](LICENSE).
