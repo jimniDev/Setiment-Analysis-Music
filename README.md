@@ -34,40 +34,12 @@ The backend for this project, which processes emotion analysis and retrieves Spo
 
 ## Folder Structure
 
-```
-Setiment-Analysis-Music/
-├── public/
-│   ├── index.html            # Root HTML file
-│   ├── favicon.ico           # Application favicon
-│   └── manifest.json         # Web app manifest
-├── src/
-│   ├── api/
-│   │   ├── analysisApi.js    # Handles API calls for emotion analysis
-│   │   ├── recommendationApi.js # Handles API calls for music recommendations
-│   ├── components/
-│   │   ├── Chart.js          # Visualizes emotion analysis results
-│   │   ├── MusicCard.js      # Displays recommended music tracks
-│   │   ├── DiaryForm.js      # Input form for diary submission
-│   │   ├── Navbar.js         # Navigation bar component
-│   │   ├── AlbumArtExtractor.js # Extract colors from album images
-│   │   ├── LPAnimation.js    # CSS-based rotating LP record component
-│   │   ├── SwipeableCards.js # Swipe functionality for recommendation cards
-│   ├── pages/
-│   │   ├── Home.js           # Home page with diary submission form
-│   │   ├── Results.js        # Page displaying emotion analysis and recommendations
-│   │   ├── Archive.js        # Page for viewing past diary submissions and results
-│   ├── styles/               # Application-wide CSS styles
-│   ├── App.js                # Main application component
-│   ├── index.js              # Application entry point
-├── .env.example              # Environment variables template
-├── package.json              # Project dependencies and scripts
-├── README.md                 # Project documentation
-```
+![image](https://github.com/user-attachments/assets/46f2e3b7-c503-428a-880b-5668c3e5cc64)
 
 ---
 
 ## Development Process
-![image](https://github.com/user-attachments/assets/46f2e3b7-c503-428a-880b-5668c3e5cc64)
+
 ![image](https://github.com/user-attachments/assets/c1e4a837-a443-45e4-8888-1fc560b55505)
 
 ### User Flow
