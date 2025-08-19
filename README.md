@@ -1,4 +1,4 @@
-# Setiment-Analysis-Music
+# Sentiment-Analysis-Music
 
 ## Overview
 
